@@ -12,8 +12,9 @@ namespace QuickBuy.Dominio.Entidades
 
         /// <summary>
         /// Um usuario pode ter nenhum, um ou muitos pedidos
+        /// virtual - vermite que o EF faça sobreposicao da collection para alimenta-la em tempo de execucao 
         /// </summary>
-        public ICollection<Pedido> Pedidos { get; set; }
+        public virtual ICollection<Pedido> Pedidos { get; set; } //vai estar como HasMany
 
         public override void Validate()
         {

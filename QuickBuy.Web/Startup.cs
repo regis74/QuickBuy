@@ -28,7 +28,8 @@ namespace QuickBuy.Web
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             var connectionString = Configuration.GetConnectionString("QuickBuyDB");
             services.AddDbContext<QuickBuyContexto>(option => 
-                                                        option.UseMySql(connectionString,
+                                                        option.UseLazyLoadingProxies() //permite carregamento de forma automatica nos relacionamentos entre classes (tabelas) carregamento em cascata (dependencia do EF proxy 2.2.0)
+                                                                .UseMySql(connectionString,
                                                                             m => m.MigrationsAssembly("QuickBuy.Repositorio"))); //"QuickBuy.Repositorio" nome do assembly que é exatamente o nome do projeto de Repositorio
 
 
