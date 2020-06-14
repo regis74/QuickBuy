@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using QuickBuy.Dominio.Contratos;
 using QuickBuy.Repositorio.Context;
+using QuickBuy.Repositorio.Repositorios;
 
 namespace QuickBuy.Web
 {
@@ -29,9 +31,12 @@ namespace QuickBuy.Web
             var connectionString = Configuration.GetConnectionString("QuickBuyDB");
             services.AddDbContext<QuickBuyContexto>(option => 
                                                         option.UseLazyLoadingProxies() //permite carregamento de forma automatica nos relacionamentos entre classes (tabelas) carregamento em cascata (dependencia do EF proxy 2.2.0)
-                                                                .UseMySql(connectionString,
+                                                              .UseMySql(connectionString,
                                                                             m => m.MigrationsAssembly("QuickBuy.Repositorio"))); //"QuickBuy.Repositorio" nome do assembly que é exatamente o nome do projeto de Repositorio
 
+            //injecao de dependencia
+            //todo codigo que no construtor estive como IProdutoRepositorio, recebera instancia de ProdutoRepositorio
+            services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -70,7 +75,7 @@ namespace QuickBuy.Web
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
-                spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = "ClientApp"; //pasta onde esta o projeto do Angular!!!!
 
                 if (env.IsDevelopment())
                 {
