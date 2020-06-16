@@ -79,7 +79,10 @@ namespace QuickBuy.Web
 
                 if (env.IsDevelopment())
                 {
+                    //execucao pelo iis
                     //spa.UseAngularCliServer(npmScript: "start");
+                    
+                    //execucao do projeto pelo servidor do angular
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
                 }
             });

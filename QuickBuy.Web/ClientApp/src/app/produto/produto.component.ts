@@ -13,7 +13,7 @@ export class ProdutoComponent {
   public liberadoParaVenda: boolean;
 
   public obterNome(): string{
-    return "Samsung teste";
+    return "Samsung2";
   }
    
 }
