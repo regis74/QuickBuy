@@ -23,6 +23,7 @@ export class UsuarioServico {
       senha: usuario.senha
     }
 
+
     //this.baseURL = raiz do site que pode ser por exemplo http://www.quickbuy.com/api/...
     return this.http.post<Usuario>(this.baseURL + "api/usuario", body, { headers });
   }
