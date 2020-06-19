@@ -7,6 +7,20 @@ namespace QuickBuy.Web.Controllers
     [Route("api/[Controller]")]
     public class UsuarioController: Controller
     {
+        [HttpGet]
+        public ActionResult Get()
+        {
+            try
+            {
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+
         [HttpPost]
         public ActionResult Post()
         {
